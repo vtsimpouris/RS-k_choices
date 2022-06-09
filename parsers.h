@@ -53,7 +53,7 @@ void read_taxi_keys(ifstream& file,vector<uint64_t> keys,long int n){
       stringstream str(line);
       getline(str, word, ',');
       getline(str, word, ',');
-      //getline(str, word, ',');
+      getline(str, word, ',');
       if(i > 0){
         int ssize = word.length();
         char key[ssize + 1];
