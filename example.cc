@@ -4,10 +4,7 @@
 #include <bits/stdc++.h>
 #include <numeric>
 #include "parsers.h"
-//#include "osm_parser.h"
-//#include "fb_parser.h"
 #include "wiki_parser.h"
-//#include "book_parser.h"
 #include <algorithm>
 #include <array>
 #include <chrono>
@@ -158,12 +155,8 @@ void RadixSplineExample(int n) {
       keys.push_back(distr(gen));
   }*/
   //read_osm();
-  keys = read_taxi(keys,size);
-  //keys = read_fb(keys,size);
-  //keys = read_wiki(keys,size);
-  //keys = read_osm(keys,size);
-  //keys = read_books(keys,size);
-  //cout << keys.at(12) << endl;
+  //keys = read_taxi(keys,size);
+  keys = read_wiki(keys,size);
   /*int i = 0;
   int diff = 1;
   double a = 1;
