@@ -33,7 +33,8 @@ make is needed for every change in max_error
 ```mkdir -p build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
-make```
+make
+```
 
 for various experiments:
  ```cd build
