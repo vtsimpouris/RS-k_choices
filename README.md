@@ -30,13 +30,13 @@ go to line 16
 change argument size_t max_error, eg. size_t max_error = 1
 make is needed for every change in max_error
 
-'''mkdir -p build
+```mkdir -p build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
-make'''
+make```
 
 for various experiments:
- '''cd build
+ ```cd build
  make
- ./run_n_choices.sh'''
+ ./run_n_choices.sh```
  repeat for different error/dataset
