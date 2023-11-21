@@ -45,5 +45,5 @@ for various experiments:
  repeat for different error/dataset
 
 
-
+![Results](results.PNG)
 ![Shirnkage methodology](slopes.PNG)
