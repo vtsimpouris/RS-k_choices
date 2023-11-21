@@ -46,4 +46,4 @@ for various experiments:
 
 
 
-![Shirnkage methodology]([slopes.PNG])
+![Shirnkage methodology](slopes.PNG)
