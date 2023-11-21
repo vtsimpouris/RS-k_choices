@@ -39,5 +39,6 @@ make
 for various experiments:
  ```cd build
  make
- ./run_n_choices.sh```
+ ./run_n_choices.sh
+```
  repeat for different error/dataset
