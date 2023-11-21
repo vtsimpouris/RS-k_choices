@@ -1,6 +1,7 @@
 # Radix Spline with the power of k choices
 The idea is to create multiple Radix Spline indexes to capture different underlying data distributions and improve query performance.
 Results suggest a strong memmory compression and and average improvement in query performance.
+Check Radix_Spline_k_choices.pdf for the detailed report.
 
 
 
