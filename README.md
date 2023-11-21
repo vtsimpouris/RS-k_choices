@@ -43,3 +43,7 @@ for various experiments:
  ./run_n_choices.sh
 ```
  repeat for different error/dataset
+
+
+
+![Shirnkage methodology]([https://example.com/image.png](https://github.com/vtsimpouris/RS-k_choices/blob/main/slopes.PNG)https://github.com/vtsimpouris/RS-k_choices/blob/main/slopes.PNG)
