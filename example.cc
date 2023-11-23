@@ -139,8 +139,6 @@ void printFrequency(vector<uint64_t> vec, int test_num)
 void RadixSplineExample(int n) {
   srand ( unsigned ( time(0) ) );
   //vector<uint64_t> keys = CreateSkewedKeys<uint64_t>(unsigned ( time(0)));//keys(1e5);
-
-  //cout << keys[100];
   //vector<uint64_t> keys(1e6);
   //generate(keys.begin(), keys.end(), rand);
 
@@ -237,8 +235,6 @@ void RadixSplineExample(int n) {
       if(swi < 2*n){
           multi_rsb.at(swi%n).AddKey(key);
           keys_partition[swi%n].push_back(key);
-          //cout << "key " << key << endl;
-          //cout << "index " << swi%n << endl;
           swi++;
           
       }
@@ -254,9 +250,6 @@ void RadixSplineExample(int n) {
             }
             optimal_i = argmin(shrinkages,n); 
           }
-            //cout << "key " << key << endl;
-            //cout << "index " << optimal_i << endl;
-            //cout << endl;
             multi_rsb.at(optimal_i).AddKey(key);
             keys_partition[optimal_i].push_back(key);         
        }
@@ -275,32 +268,20 @@ void RadixSplineExample(int n) {
     vector<vector<uint64_t>::iterator> begin_it;
     uint64_t partition_back[n] = {0};
     for (int i = 0; i < n; i++){
-      //cout << multi_rs.at(i).spline_points_.size() << endl;
       begin_it.push_back(begin(keys_partition[i]));
       partition_back[i] = keys_partition[i].back();
-      //cout << "partition size " << keys_partition[i].size() << endl;
     }
 
-    for (int i = 0; i < n; i++){
-      //cout << "index " << i << endl;
-      for (int j = 0; j < multi_rs.at(i).spline_points_.size(); j++){
-        //cout << "sp_point " << multi_rs.at(i).spline_points_.at(j).x << endl;
-      }
-    }
 
     double index_size = sum;
     //cout << "spline points " << sum << endl;
     cout << "Megabytes: " << 16*index_size/1048576 << endl;
-    for (int i = 0; i < n; i++){
-       //cout << multi_rs.at(i).averageSearchCost() << endl;
-    }
     
 
     double times = 0;
     double times_rs = 0;
     double counter = 0;
     vector<uint64_t> points;
-    //cout << test_num << endl;
 
 
      int check = 0;
@@ -325,13 +306,8 @@ void RadixSplineExample(int n) {
           vector<uint64_t>::iterator start = begin_it.at(i) + bound.begin, last = begin_it.at(i) + bound.end;
           estimate = serialSearch(start, last, test_key) - begin_it.at(i);
         }
-        
-        //break;
         if(keys_partition[i].at(estimate) == test_key){
               test_keys.at(j) = -1;
-              //points.push_back(multi_rs.at(i).CalculateSplineIndex(test_key));
-              //check = 1;
-              //break;
         }
       }
       auto t_end = chrono::high_resolution_clock::now();
@@ -353,13 +329,6 @@ void RadixSplineExample(int n) {
       ip = unique(points.begin(),points.end());
       points.resize(std::distance(points.begin(), ip));
       cout << "unique points " << points.size() << endl;*/
-      //cout << "0 keys: " << counter/test_num << endl;
-      //cout << "avg rs time: " << times_rs/counter << endl;
-      for (int j = 0; j < test_keys.size(); j++){
-        if(test_keys.at(j) != -1){
-          //cout << "key not found" << endl;
-        }
-      }
       multi_rs.clear();
       for (int i = 0; i < n; i++){
         keys_partition[i].clear();
