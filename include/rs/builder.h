@@ -81,35 +81,16 @@ int GetNumberSplinePoints(){
 
 
 double checkCDF(KeyType key, double position, int equality) {
-    //std::cout << "index keys: " << curr_num_keys_ << std::endl;
     if (curr_num_keys_ == 0) {
       return INT_MAX;
-      // Add first CDF point to spline.
-      //AddKeyToSpline(key, position);
-      //++curr_num_distinct_keys_;
-      //RememberPreviousCDFPoint(key, position);
     }
 
-    if (key == prev_key_) {
-      // No new CDF point if the key didn't change.
-    }
-
-    // New CDF point.
-    //++curr_num_distinct_keys_;
-
-    if (curr_num_distinct_keys_ == 2) {
-      // Initialize `upper_limit_` and `lower_limit_` using the second CDF point.
-      //SetUpperLimit(key, position + max_error_);
-      //SetLowerLimit(key, (position < max_error_) ? 0 : position - max_error_);
-      //RememberPreviousCDFPoint(key, position);
-    }
     // `B` in algorithm.
     const Coord<KeyType>& last = spline_points_.back();
 
     // Compute current `upper_y` and `lower_y`.
     const double upper_y = position + max_error_;
     const double lower_y = (position < max_error_) ? 0 : position - max_error_;
-
 
     // Compute differences.
     assert(upper_limit_.x >= last.x);
@@ -137,34 +118,21 @@ double checkCDF(KeyType key, double position, int equality) {
     int update_upper = 0;
     double shrink = 0;
     
-
-
     double upper_y_pr = ((upper_limit_.y - last.y)/(upper_limit_.x - last.x))*(key-last.x) + last.y;
     double lower_y_pr = ((lower_limit_.y - last.y)/(lower_limit_.x - last.x))*(key-last.x) + last.y;
     double margin = upper_y - lower_y;
-
-    //double margin = upper_y_pr - lower_y_pr;
-    //std::cout << key << std::endl;
-    //std::cout << BU-BL << std::endl;
-    //std::cout << std::endl;
+ 
     if(equality){
       return prev_point_.x;
     }
     if (((ComputeOrientation(upper_limit_x_diff, upper_limit_y_diff, x_diff, y_diff) != Orientation::CW)
         || (ComputeOrientation(lower_limit_x_diff, lower_limit_y_diff, x_diff, y_diff) != Orientation::CCW))) {
-      // Add previous CDF point to spline.
-      //AddKeyToSpline(prev_point_.x, prev_point_.y);
-      // Update limits.
-      //SetUpperLimit(key, upper_y);
-      //SetLowerLimit(key, lower_y);
-      //++curr_num_keys_;
+
       if((prev_point_.x - last.x) < max_error_*(key - prev_point_.x)){
           shrink = 0;
       }else{
           shrink = INT_MAX;
-          //shrink = 0;
       } 
-          //shrink = (upper_limit_.y - last.y)/(upper_limit_.x - last.x) + (lower_limit_.y - last.y)/(lower_limit_.x - last.x);
           margin = 0;
     } else {
       assert(upper_y >= last.y);
@@ -173,10 +141,6 @@ double checkCDF(KeyType key, double position, int equality) {
         update_upper = 1;
         margin = (upper_y - lower_y_pr);
         shrink = (upper_limit_.y - last.y)/(upper_limit_.x - last.x) - (upper_y- last.y)/(key - last.x);
-        //std::cout << "C " << ComputeOrientation_expr(upper_limit_x_diff, upper_limit_y_diff, x_diff, upper_y_diff) << std::endl;
-        //SetUpperLimit(key, upper_y);
-        //std::cout << "up: " << std::endl;
-        //std::cout << key - last.x << std::endl;
       }
 
       const double lower_y_diff = lower_y - last.y;
@@ -187,17 +151,10 @@ double checkCDF(KeyType key, double position, int equality) {
           margin = upper_y - lower_y;
           shrink += (upper_limit_.y - last.y)/(upper_limit_.x - last.x) - (upper_y- last.y)/(key - last.x);
         }
-        //SetLowerLimit(key, lower_y);
       }
     }
-    //++curr_num_keys_;
-    //std::cout << "key " <<  key << std::endl;
-    //std::cout << "shrink " << shrink << std::endl;
-    //std::cout << std::endl;
-    //return margin;
     return shrink;
-    //return margin;
-    //RememberPreviousCDFPoint(key, position);
+
   }
   size_t curr_num_keys_;
   std::vector<Coord<KeyType>> spline_points_;
