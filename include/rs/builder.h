@@ -263,14 +263,6 @@ double checkCDF(KeyType key, double position, int equality) {
 
     double upper_y_pr = ((upper_limit_.y - last.y)/(upper_limit_.x - last.x))*(key-last.x) + last.y;
     double lower_y_pr = ((lower_limit_.y - last.y)/(lower_limit_.x - last.x))*(key-last.x) + last.y;
-    //std::cout << "key: " << key << std::endl;
-    //std::cout << "upper_y_pr " << upper_y_pr << std::endl;
-    //std::cout << "position " << position << std::endl;
-    //std::cout << "lower_y_pr " << lower_y_pr << std::endl;
-    //std::cout << "upper_y " << upper_y + 1 << std::endl;
-    //std::cout << position << std::endl;
-    //std::cout << "lower_y " << lower_y + 1 << std::endl;
-    //std::cout << std::endl; 
 
 
     // `prev_point_` is the previous point on the CDF and the next candidate to be added to the spline.
@@ -284,32 +276,16 @@ double checkCDF(KeyType key, double position, int equality) {
       // Update limits.
       SetUpperLimit(key, upper_y);
       SetLowerLimit(key, lower_y);
-      //std::cout << "upper_y_pr " << upper_y_pr + 1 << std::endl;
-      //std::cout << position << std::endl;
-      //std::cout << "lower_y_pr " << lower_y_pr + 1 << std::endl;
-      //std::cout << "upper_y " << upper_y + 1 << std::endl;
-      //std::cout << position << std::endl;
-      //std::cout << "lower_y " << lower_y + 1 << std::endl;
-      //std::cout << std::endl; 
     } else {
       assert(upper_y >= last.y);
       const double upper_y_diff = upper_y - last.y;
       if (ComputeOrientation(upper_limit_x_diff, upper_limit_y_diff, x_diff, upper_y_diff) == Orientation::CW) {
         SetUpperLimit(key, upper_y);
-        //std::cout << "upper_y " << upper_y + 1 << std::endl;
-        //std::cout << position << std::endl;
-        //std::cout << "lower_y " << lower_limit_.y + 1 << std::endl;
-        //std::cout << std::endl; 
       }
 
       const double lower_y_diff = lower_y - last.y;
       if (ComputeOrientation(lower_limit_x_diff, lower_limit_y_diff, x_diff, lower_y_diff) == Orientation::CCW) {
         SetLowerLimit(key, lower_y);
-        //std::cout << "both" << std::endl;
-        //std::cout << "upper_y " << upper_y + 1 << std::endl;
-        //std::cout << position << std::endl;
-        //std::cout << "lower_y " << lower_y + 1 << std::endl;
-        //std::cout << std::endl; 
       }
       
     }
